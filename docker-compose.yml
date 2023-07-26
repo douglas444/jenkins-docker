@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+
+  controller:
+    build: ./jenkins-controller
+    container_name: jenkins-controller
+    ports:
+      - "8000:8080"
+      - "50000:50000"
+    volumes:
+      - home:/var/jenkins_home
+    restart: on-failure
+    env_file:
+      - ./config/jenkins-controller/.env
+
+  agent:
+    container_name: jenkins-agent
+    build:
+      context: ./jenkins-agent
+    ports:
+      - "22:22"
+    privileged: true
+    user: root
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: on-failure
+    env_file:
+      - ./config/jenkins-agent/.env
+
+volumes:
+  home: {}
