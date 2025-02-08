@@ -7,18 +7,17 @@ services:
     container_name: jenkins-controller
     ports:
       - "8000:8080"
-      - "50000:50000"
     volumes:
       - home:/var/jenkins_home
     restart: on-failure
     env_file:
       - ./config/jenkins-controller/.env
+    networks:
+      - agent_network
 
   agent:
     build: ./jenkins-agent
     container_name: jenkins-agent
-    ports:
-      - "2222:22"
     privileged: true
     user: root
     volumes:
@@ -26,6 +25,12 @@ services:
     restart: on-failure
     env_file:
       - ./config/jenkins-agent/.env
+    networks:
+      - agent_network
 
 volumes:
   home: {}
+
+networks:
+  agent_network:
+    driver: bridge
