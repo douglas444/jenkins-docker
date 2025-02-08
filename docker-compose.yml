@@ -15,11 +15,10 @@ services:
       - ./config/jenkins-controller/.env
 
   agent:
+    build: ./jenkins-agent
     container_name: jenkins-agent
-    build:
-      context: ./jenkins-agent
     ports:
-      - "22:22"
+      - "2222:22"
     privileged: true
     user: root
     volumes:
