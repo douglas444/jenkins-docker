@@ -28,6 +28,16 @@ services:
     networks:
       - agent_network
 
+  nexus:
+    image: sonatype/nexus3
+    restart: on-failure
+    volumes:
+      - "nexus-data:/sonatype-work"
+    ports:
+      - "8001:8081"
+    networks:
+      - agent_network
+
 volumes:
   home: {}
 
