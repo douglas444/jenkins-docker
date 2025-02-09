@@ -29,7 +29,7 @@ services:
       - agent_network
 
   nexus:
-    image: sonatypecommunity/nexus3
+    image: sonatypecommunity/nexus3:3.77.1-alpine
     restart: on-failure
     volumes:
       - nexus-data:/sonatype-work
