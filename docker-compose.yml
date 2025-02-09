@@ -31,6 +31,8 @@ services:
   nexus:
     image: sonatypecommunity/nexus3:3.77.1-alpine
     restart: on-failure
+    env_file:
+      - ./config/nexus/.env
     volumes:
       - nexus-data:/sonatype-work
     ports:
