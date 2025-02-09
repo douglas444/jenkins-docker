@@ -8,7 +8,7 @@ services:
     ports:
       - 8000:8080
     volumes:
-      - jenkins-data:/var/jenkins_home
+      - home:/var/jenkins_home
     restart: on-failure
     env_file:
       - ./config/jenkins-controller/.env
@@ -39,7 +39,7 @@ services:
       - agent_network
 
 volumes:
-  jenkins-data: {}
+  home: {}
   nexus-data: {}
 
 networks:
