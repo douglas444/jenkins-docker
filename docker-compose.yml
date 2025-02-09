@@ -6,9 +6,9 @@ services:
     build: ./jenkins-controller
     container_name: jenkins-controller
     ports:
-      - "8000:8080"
+      - 8000:8080
     volumes:
-      - home:/var/jenkins_home
+      - jenkins-data:/var/jenkins_home
     restart: on-failure
     env_file:
       - ./config/jenkins-controller/.env
@@ -32,14 +32,15 @@ services:
     image: sonatype/nexus3
     restart: on-failure
     volumes:
-      - "nexus-data:/sonatype-work"
+      - nexus-data:/sonatype-work
     ports:
-      - "8001:8081"
+      - 8001:8081
     networks:
       - agent_network
 
 volumes:
-  home: {}
+  jenkins-data: {}
+  nexus-data: {}
 
 networks:
   agent_network:
