@@ -1,0 +1,1 @@
+FROM sonatypecommunity/nexus3:3.77.1-alpine

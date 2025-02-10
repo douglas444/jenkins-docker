@@ -29,7 +29,8 @@ services:
       - agent_network
 
   nexus:
-    image: sonatypecommunity/nexus3:3.77.1-alpine
+    build: ./nexus
+    container_name: nexus
     restart: on-failure
     env_file:
       - ./config/nexus/.env
